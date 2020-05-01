@@ -4,10 +4,10 @@ namespace QuickSort
   {
     public static int[] SortArr(this int[] arr)
     {
-      return QuickSort(arr, 0, arr.Length - 1);
+      return arr.QuickSort(0, arr.Length - 1);
     }
 
-    public static int[] QuickSort(int[] arr, int start, int end)
+    private static int[] QuickSort(this int[] arr, int start, int end)
     {
       int pivot = (start + end) / 2;
       int pivotVal = arr[pivot];
@@ -15,13 +15,12 @@ namespace QuickSort
       int rightPos = end - 1;
 
       // move pivotVal to the right
-      arr[pivot] = arr[end];
-      arr[end] = pivotVal;
+      arr.Swap(pivot, end);
 
       // if arr only has 2 values, compare and swap if necessary
       if (end - start == 1)
       {
-        if (arr[start] > arr[end]) Swap(arr, start, end);
+        if (arr[start] > arr[end]) arr.Swap(start, end);
         return arr;
       }
 
@@ -42,11 +41,11 @@ namespace QuickSort
 
         if (rightPos == leftPos)
         {
-          if (arr[leftPos] > pivotVal) Swap(arr, leftPos, end);
+          if (arr[leftPos] > pivotVal) arr.Swap(leftPos, end);
           break;
         }
 
-        Swap(arr, leftPos, rightPos);
+        arr.Swap(leftPos, rightPos);
       }
 
       if (leftPos - start > 1) QuickSort(arr, start, leftPos);
@@ -55,7 +54,7 @@ namespace QuickSort
       return arr;
     }
 
-    public static int[] Swap(int[] arr, int i, int j)
+    private static int[] Swap(this int[] arr, int i, int j)
     {
       int t = arr[i];
       arr[i] = arr[j];
