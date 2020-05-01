@@ -48,8 +48,8 @@ namespace QuickSort
         arr.Swap(leftPos, rightPos);
       }
 
-      if (leftPos - start > 1) QuickSort(arr, start, leftPos);
-      if (rightPos < end - 1) QuickSort(arr, leftPos, end);
+      if (leftPos - start > 1) arr.QuickSort(start, leftPos);
+      if (rightPos < end - 1) arr.QuickSort(leftPos, end);
 
       return arr;
     }
